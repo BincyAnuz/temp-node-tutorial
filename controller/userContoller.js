@@ -1,3 +1,4 @@
+let products=require("../public/data/products")
 let credential = {
     username: 'vishnu',
     password: '123456',
@@ -5,11 +6,12 @@ let credential = {
 
 //get home and login pages
 const getPages=(req,res)=>{
+
     if (req.session.user) {
-     
-        res.render('user/homePage');
+   
+        res.render('user/homePage',{products});
       } else {
-       
+        
         res.render('user/loginPage', { loginErr: req.session.loginErr });
         req.session.loginErr = false;
       }

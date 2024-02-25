@@ -1,11 +1,10 @@
 const express=require("express")
-const ejs=require("ejs")
 const session=require("express-session")
-const uuid=require("uuid")
 const app=express()
 const userRoutes=require("./routes/userRoutes")
 const path=require("path")
 const hbs = require("express-handlebars");
+let cookieParser = require("cookie-parser");
 
 app.set('view engine','hbs')
 app.set('views',path.join(__dirname,'views'))
@@ -21,9 +20,10 @@ app.engine(
     })
   );
   app.use(express.json())
+
   app.use(express.urlencoded({ extended: true }));
  app.use(express.static(path.join(__dirname,"public")))
- app.use(session({secret:"uuid",cookie:{maxAge:null}}))
+ app.use(session({secret:"key",cookie:{maxAge:null}}))
 
 
 
